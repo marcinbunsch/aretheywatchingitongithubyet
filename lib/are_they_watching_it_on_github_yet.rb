@@ -8,16 +8,14 @@ class AreTheyWatchingItOnGithubYet < Sinatra::Base
     haml :home
   end
 
-  get '/error' do
-    haml :error
-  end
-
   get '/check' do
     @what  = params['what']
+    redirect '/' if !@what or @what == ''
+
     who    = params['who']
-    return redirect '/' if !@what or @what == ''
     @repo  = !!@what.match('/')
     method = @repo ? :watchers : :followers
+
     begin
       watchers   = Octokit.send(method, @what)
       candidates = who.split(',').collect(&:strip)
@@ -29,6 +27,7 @@ class AreTheyWatchingItOnGithubYet < Sinatra::Base
     rescue
       haml :error
     end
+
   end
 
 end
