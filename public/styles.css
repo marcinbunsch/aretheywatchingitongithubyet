@@ -1,4 +1,7 @@
 /* General */
+body {
+  padding-bottom: 40px;
+}
 body,form {
   text-align: center;
   font: 15px helvetica,arial,freesans,clean,sans-serif;
@@ -7,6 +10,18 @@ body,form {
 a {
   color: #4183C4;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 30px;
+  padding-top: 20px;
+  background-color: white;
+  margin-top: 40px;
+  font-size: 12px
 }
 
 /* Octocat logo */

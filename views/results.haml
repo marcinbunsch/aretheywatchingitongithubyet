@@ -5,7 +5,8 @@
     %link{ :rel => 'stylesheet', :href => "styles.css", :type => 'text/css' }
 
   %body
-    %img.octocat{ :src => 'http://octodex.github.com/images/original.jpg' }
+    %a{ :href => '/' }
+      %img.octocat{ :src => '/octocat.jpg' }
     .results
       - if @found.size > 0
         .result
@@ -30,3 +31,5 @@
           on Github yet?
           %span.big.red
             NO!
+
+    = haml 'partials/footer'.to_sym

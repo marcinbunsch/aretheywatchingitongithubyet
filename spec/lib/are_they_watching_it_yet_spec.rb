@@ -22,6 +22,12 @@ describe AreTheyWatchingItOnGithubYet do
     page.should have_content('Enter the name of repository or user to check')
   end
 
+  it "should have a link to the octodex" do
+    visit '/'
+
+    page.should have_content('Octocat source: octodex.github.com')
+  end
+
   it "should show an error when Octokit raises an error" do
     Octokit.should_receive(:watchers).and_raise('Foo')
     visit '/'
@@ -30,6 +36,25 @@ describe AreTheyWatchingItOnGithubYet do
     click_button 'Check it!'
 
     page.should have_content('Sorry! There was an error when contacting Github!')
+  end
+
+  it "should redirect to homepage when params[what] is empty" do
+    visit '/'
+    fill_in 'what', :with => ''
+    fill_in 'who', :with => 'marcinbunsch'
+    click_button 'Check it!'
+
+    page.current_path.should == '/'
+  end
+
+  it "should show an not found page when Octokit raises a 404" do
+    Octokit.should_receive(:watchers).and_raise(Octokit::NotFound)
+    visit '/'
+    fill_in 'what', :with => 'futuresimple/jessie'
+    fill_in 'who', :with => 'marcinbunsch'
+    click_button 'Check it!'
+
+    page.should have_content('Sorry! That repo could not be found on Github.')
   end
 
   it "should properly handle user list with whitespace" do

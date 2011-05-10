@@ -3,14 +3,22 @@
   %head
     %title== Are people watching it yet?
     %link{ :rel => 'stylesheet', :href => "styles.css", :type => 'text/css' }
-
+    %script{ :src => 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js', :type => 'text/javascript' }
+    %script{ :src => '/app.js', :type => 'text/javascript' }
   %body
-    %img.octocat{ :src => 'http://octodex.github.com/images/original.jpg' }
+    %a{ :href => '/' }
+      %img.octocat{ :src => '/octocat.jpg' }
     %form{:action => '/check'}
       %label Enter comma separated github usernames
       %input{ :type => 'text', :name => 'who' }
-      %label Enter the name of repository or user to check (like futuresimple/jessie or marcinbunsch)
+      %label
+        Enter the name of repository or user to check (like
+        %a.example futuresimple/jessie
+        or
+        %a.example marcinbunsch
+        )
       %input{ :type => 'text', :name => 'what' }
       .submit
         %input{ :type => 'submit', :value => 'Check it!' }
 
+    = haml 'partials/footer'.to_sym
