@@ -29,7 +29,7 @@ describe AreTheyWatchingItOnGithubYet do
     fill_in 'who', :with => 'marcinbunsch'
     click_button 'Check it!'
 
-    page.should have_content('Error!')
+    page.should have_content('Sorry! There was an error when contacting Github!')
   end
 
   it "should properly handle user list with whitespace" do
@@ -39,8 +39,8 @@ describe AreTheyWatchingItOnGithubYet do
     fill_in 'who', :with => '  marcinbunsch,   futuresimple'
     click_button 'Check it!'
 
-    page.should have_content('Does marcinbunsch follow futuresimple on Github yet? YES!')
-    page.should have_content('Does futuresimple follow futuresimple on Github yet? NO!')
+    page.should have_content('Is marcinbunsch following futuresimple on Github yet? YES!')
+    page.should have_content('Is futuresimple following futuresimple on Github yet? NO!')
   end
 
   describe "repository" do
@@ -54,7 +54,7 @@ describe AreTheyWatchingItOnGithubYet do
         fill_in 'who', :with => 'marcinbunsch'
         click_button 'Check it!'
 
-        page.should_not have_content('Does marcinbunsch watch futuresimple/jessie on Github yet? YES!')
+        page.should_not have_content('Is marcinbunsch watching futuresimple/jessie on Github yet? YES!')
       end
 
       it "should render properly with one user" do
@@ -64,7 +64,7 @@ describe AreTheyWatchingItOnGithubYet do
         fill_in 'who', :with => 'marcinbunsch'
         click_button 'Check it!'
 
-        page.should have_content('Does marcinbunsch watch futuresimple/jessie on Github yet? YES!')
+        page.should have_content('Is marcinbunsch watching futuresimple/jessie on Github yet? YES!')
       end
 
       it "should render properly with many users" do
@@ -74,7 +74,7 @@ describe AreTheyWatchingItOnGithubYet do
         fill_in 'who', :with => 'marcinbunsch,futuresimple'
         click_button 'Check it!'
 
-        page.should have_content('Do marcinbunsch, futuresimple watch futuresimple/jessie on Github yet? YES!')
+        page.should have_content('Are marcinbunsch, futuresimple watching futuresimple/jessie on Github yet? YES!')
       end
 
     end
@@ -88,7 +88,7 @@ describe AreTheyWatchingItOnGithubYet do
         fill_in 'who', :with => 'marcinbunsch'
         click_button 'Check it!'
 
-        page.should_not have_content('Does marcinbunsch watch futuresimple/jessie on Github yet? NO!')
+        page.should_not have_content('Is marcinbunsch watching futuresimple/jessie on Github yet? NO!')
       end
 
       it "should render properly with one user" do
@@ -98,17 +98,17 @@ describe AreTheyWatchingItOnGithubYet do
         fill_in 'who', :with => 'marcinbunsch'
         click_button 'Check it!'
 
-        page.should have_content('Does marcinbunsch watch futuresimple/jessie on Github yet? NO!')
+        page.should have_content('Is marcinbunsch watching futuresimple/jessie on Github yet? NO!')
       end
 
       it "should render properly with many users" do
         Octokit.should_receive(:watchers).and_return([])
         visit '/'
         fill_in 'what', :with => 'futuresimple/jessie'
-        fill_in 'who', :with => 'marcinbunsch'
+        fill_in 'who', :with => 'marcinbunsch, futuresimple'
         click_button 'Check it!'
 
-        page.should have_content('Does marcinbunsch watch futuresimple/jessie on Github yet? NO!')
+        page.should have_content('Are marcinbunsch, futuresimple watching futuresimple/jessie on Github yet? NO!')
       end
 
     end
@@ -126,7 +126,7 @@ describe AreTheyWatchingItOnGithubYet do
         fill_in 'who', :with => 'marcinbunsch'
         click_button 'Check it!'
 
-        page.should_not have_content('Does marcinbunsch follow futuresimple on Github yet? YES!')
+        page.should_not have_content('Is marcinbunsch following futuresimple on Github yet? YES!')
       end
 
       it "should render properly with one user" do
@@ -136,7 +136,7 @@ describe AreTheyWatchingItOnGithubYet do
         fill_in 'who', :with => 'marcinbunsch'
         click_button 'Check it!'
 
-        page.should have_content('Does marcinbunsch follow futuresimple on Github yet? YES!')
+        page.should have_content('Is marcinbunsch following futuresimple on Github yet? YES!')
       end
 
       it "should render properly with many users" do
@@ -146,7 +146,7 @@ describe AreTheyWatchingItOnGithubYet do
         fill_in 'who', :with => 'marcinbunsch,futuresimple'
         click_button 'Check it!'
 
-        page.should have_content('Do marcinbunsch, futuresimple follow futuresimple on Github yet? YES!')
+        page.should have_content('Are marcinbunsch, futuresimple following futuresimple on Github yet? YES!')
       end
 
     end
@@ -160,7 +160,7 @@ describe AreTheyWatchingItOnGithubYet do
         fill_in 'who', :with => 'marcinbunsch'
         click_button 'Check it!'
 
-        page.should_not have_content('Does marcinbunsch follow futuresimple on Github yet? NO!')
+        page.should_not have_content('Is marcinbunsch following futuresimple on Github yet? NO!')
       end
 
       it "should render properly with one user" do
@@ -170,7 +170,7 @@ describe AreTheyWatchingItOnGithubYet do
         fill_in 'who', :with => 'marcinbunsch'
         click_button 'Check it!'
 
-        page.should have_content('Does marcinbunsch follow futuresimple on Github yet? NO!')
+        page.should have_content('Is marcinbunsch following futuresimple on Github yet? NO!')
       end
 
       it "should render properly with many users" do
@@ -180,7 +180,7 @@ describe AreTheyWatchingItOnGithubYet do
         fill_in 'who', :with => 'marcinbunsch,futuresimple'
         click_button 'Check it!'
 
-        page.should have_content('Do marcinbunsch, futuresimple follow futuresimple on Github yet? NO!')
+        page.should have_content('Are marcinbunsch, futuresimple following futuresimple on Github yet? NO!')
       end
 
     end

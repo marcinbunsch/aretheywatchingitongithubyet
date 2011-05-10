@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title== Are people watching it yet?
+    %title== Are people watching #{@what} yet?
     %link{ :rel => 'stylesheet', :href => "styles.css", :type => 'text/css' }
 
   %body
@@ -9,10 +9,10 @@
     .results
       - if @found.size > 0
         .result
-          = @found.size > 1 ? "Do" : "Does"
+          = @found.size > 1 ? "Are" : "Is"
           %span.usernames
             = @found.join(', ')
-          = @repo ? "watch" : "follow"
+          = @repo ? "watching" : "following"
           %span.watchable
             %a{ :href => "https://github.com/#{@what}" }= @what
           on Github yet?
@@ -21,10 +21,10 @@
 
       - if @missing.size > 0
         .result
-          = @missing.size > 1 ? "Do" : "Does"
+          = @missing.size > 1 ? "Are" : "Is"
           %span.usernames
             = @missing.join(', ')
-          = @repo ? "watch" : "follow"
+          = @repo ? "watching" : "following"
           %span.watchable
             %a{ :href => "https://github.com/#{@what}" }= @what
           on Github yet?
