@@ -1,0 +1,98 @@
+/* General */
+body,form {
+  text-align: center;
+  font: 15px helvetica,arial,freesans,clean,sans-serif;
+}
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+/* Octocat logo */
+.octocat {
+  margin-top: 10px;
+  width: 300px;
+}
+
+/* Form */
+label {
+  font-size: 14px;
+  margin:10px;
+  display: block;
+}
+
+input[name="who"] {
+  width: 700px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+input[name="what"] {
+  width: 700px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.submit {
+  margin-top: 10px;
+}
+
+/* Stolen from Github to make it look similar ;) */
+.submit input {
+  border: 1px solid #D4D4D4;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: #F4F4F4;
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#F4F4F4',endColorstr='#ECECEC');
+  background: -webkit-gradient(linear,left top,left bottom,from(#F4F4F4),to(#ECECEC));
+  background: -moz-linear-gradient(top,#F4F4F4,#ECECEC);
+  font-size: 26px;
+  padding: 10px;
+}
+
+.submit input:hover {
+  background-color: #2A65A0;
+}
+
+/* Results */
+.results {
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.result {
+  margin-bottom: 20px;
+}
+
+.big {
+  display: block;
+  text-align: center;
+  font-size: 36px;
+  margin: 10px;
+}
+
+.error {
+  margin-top: 20px;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.results .usernames {
+  font-size: 16px;
+  display: block;
+  margin: 5px;
+  font-weight: bold;
+}
+
+.results .watchable {
+  font-style: italic;
+}
