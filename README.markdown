@@ -10,8 +10,8 @@ Installation
 
 Clone the repo, then
 
-  bundle install --binstubs
-  bin/thin -R config.ru start
+	bundle install --binstubs
+	bin/thin -R config.ru start
 
 
 Testing
@@ -19,7 +19,7 @@ Testing
 
 RSpec with Capybara is used for testing
 
-  bin/rspec spec
+	bin/rspec spec
 
 Copyright
 ---------
