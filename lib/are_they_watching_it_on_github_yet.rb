@@ -4,15 +4,20 @@ require 'octokit'
 class AreTheyWatchingItOnGithubYet < Sinatra::Base
   set :public, "public"
 
+  helpers do
+    include Rack::Utils
+    alias_method :h, :escape_html
+  end
+
   get '/' do
     haml :home
   end
 
   get '/check' do
-    @what  = params['what']
+    @what  = h(params['what'])
     redirect '/' if !@what or @what == ''
 
-    who    = params['who']
+    who    = h(params['who'])
     @repo  = !!@what.match('/')
     method = @repo ? :watchers : :followers
 

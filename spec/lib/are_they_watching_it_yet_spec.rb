@@ -22,6 +22,20 @@ describe AreTheyWatchingItOnGithubYet do
     page.should have_content('Enter the name of repository or user to check')
   end
 
+  it "should sanitize user input" do
+    Octokit.should_receive(:watchers).and_return(['marcinbunsch'])
+    visit '/'
+    fill_in 'what', :with => '<script type="text/javascript">alert(\'Busted on XSS and sent it to Github!\')</script>'
+    fill_in 'who', :with => '<script type="text/javascript">alert(\'Busted on XSS!\')</script>'
+    click_button 'Check it!'
+
+    page.source.should_not match(/\<script type="text\/javascript">alert\('Busted on XSS!'\)<\/script\>/)
+    page.source.should_not match(/\<script type="text\/javascript">alert\('Busted on XSS and sent it to Github!'\)<\/script\>/)
+    page.should_not have_content('Is <script type="text/javascript">alert(\'Busted on XSS!\')</script> following futuresimple on Github yet? YES!')
+    page.source.should match(/&lt;script type=&quot;text\/javascript&quot;&gt;alert\(&#39;Busted on XSS!&#39;\)&lt;\/script&gt;/)
+    page.source.should match(/&lt;script type=&quot;text\/javascript&quot;&gt;alert\(&#39;Busted on XSS and sent it to Github!&#39;\)&lt;\/script&gt;/)
+  end
+
   it "should have a link to the octodex" do
     visit '/'
 
